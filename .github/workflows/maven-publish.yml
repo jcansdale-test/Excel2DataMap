@@ -37,6 +37,12 @@ jobs:
         git commit -m "added version changes"
 
     - name: Publish to GitHub Packages Apache Maven
+      run: mvn deploy
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_ACTOR : 'MaheshBabu11'
+
+    - name: Publish to GitHub Packages Apache Maven
       run: mvn -V -B -X -Darguments="-DskipTests" release:clean release:prepare release:perform       
       env:
           GITHUB_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
